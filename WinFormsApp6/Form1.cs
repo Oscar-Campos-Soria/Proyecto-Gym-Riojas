@@ -9,7 +9,7 @@ using System.ComponentModel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Xml.Serialization;
-using Newtonsoft.Json;  // Asegúrate de que este using esté presente
+using Newtonsoft.Json; 
 
 
 namespace WinFormsApp6
@@ -38,6 +38,7 @@ namespace WinFormsApp6
         private Label label3;
         private Label label2;
         private Label label5;
+        private Button btnEliminar;
         string csvFilePath = "personas.csv"; // Nombre del archivo CSV
 
 
@@ -45,7 +46,7 @@ namespace WinFormsApp6
         {
 
             InitializeComponent();
-            CargarDatosDesdeCSV(); // Cargar los datos desde el archivo CSV al iniciar la aplicación
+            CargarDatosDesdeCSV();
 
 
         }
@@ -64,10 +65,9 @@ namespace WinFormsApp6
                         var worksheet = excel.Workbook.Worksheets.Add("Personas");
                         var headerRow = new List<string[]> { new string[] { "ID", "Nombres", "Apellidos", "Fecha Nacimiento", "Fecha Registro" } };
 
-                        // Determinamos las propiedades del encabezado
+                      
                         worksheet.Cells["A1:E1"].LoadFromArrays(headerRow);
 
-                        // Añadimos los datos
                         int rowIndex = 2;
                         foreach (var persona in personas)
                         {
@@ -79,7 +79,7 @@ namespace WinFormsApp6
                             rowIndex++;
                         }
 
-                        // Guardamos el archivo
+                       
                         var fileInfo = new FileInfo(sfd.FileName);
                         excel.SaveAs(fileInfo);
                         MessageBox.Show("Datos exportados a Excel correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -232,6 +232,7 @@ namespace WinFormsApp6
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -404,9 +405,20 @@ namespace WinFormsApp6
             this.label5.TabIndex = 17;
             this.label5.Text = "Exportar";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(12, 295);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(94, 29);
+            this.btnEliminar.TabIndex = 18;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(792, 374);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -599,8 +611,37 @@ namespace WinFormsApp6
         {
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        //    int id;
+        //    if (int.TryParse(txtId.Text, out id))
+        //    {
+        //        using (var context = new AppDbContext())
+        //        {
+        //            var person = context.Persons.SingleOrDefault(p => p.Id == id);
+        //            if (person != null)
+        //            {
+        //                context.Persons.Remove(person);
+        //                context.SaveChanges();
+        //                MessageBox.Show("Record deleted successfully.");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Record not found.");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please enter a valid ID.");
+        //    }
+        //}
+
     }
 }
+
 
 
  
