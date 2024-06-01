@@ -9,14 +9,14 @@ using System.ComponentModel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Xml.Serialization;
-using Newtonsoft.Json; 
-
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace WinFormsApp6
 {
     public partial class Form1 : Form
     {
-
+        private string csvFilePath = "personas.csv"; // Ruta al archivo CSV
         List<Persona> personas = new List<Persona>();
         private DataGridView dgvDatos;
         private DateTimePicker dtpFechaNacimiento;
@@ -39,8 +39,8 @@ namespace WinFormsApp6
         private Label label2;
         private Label label5;
         private Button btnEliminar;
-        string csvFilePath = "personas.csv"; // Nombre del archivo CSV
-
+        private TextBox txtId;
+   
 
         public Form1()
         {
@@ -50,6 +50,8 @@ namespace WinFormsApp6
 
 
         }
+
+
 
         private void ExportarDatosAExcel()
         {
@@ -65,7 +67,7 @@ namespace WinFormsApp6
                         var worksheet = excel.Workbook.Worksheets.Add("Personas");
                         var headerRow = new List<string[]> { new string[] { "ID", "Nombres", "Apellidos", "Fecha Nacimiento", "Fecha Registro" } };
 
-                      
+
                         worksheet.Cells["A1:E1"].LoadFromArrays(headerRow);
 
                         int rowIndex = 2;
@@ -79,7 +81,7 @@ namespace WinFormsApp6
                             rowIndex++;
                         }
 
-                       
+
                         var fileInfo = new FileInfo(sfd.FileName);
                         excel.SaveAs(fileInfo);
                         MessageBox.Show("Datos exportados a Excel correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -233,6 +235,7 @@ namespace WinFormsApp6
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -240,11 +243,12 @@ namespace WinFormsApp6
             // dgvDatos
             // 
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatos.Location = new System.Drawing.Point(318, 50);
+            this.dgvDatos.Location = new System.Drawing.Point(358, 22);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowTemplate.Height = 25;
             this.dgvDatos.Size = new System.Drawing.Size(390, 274);
             this.dgvDatos.TabIndex = 0;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
             // dtpFechaNacimiento
             // 
@@ -415,9 +419,17 @@ namespace WinFormsApp6
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(25, 269);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(63, 23);
+            this.txtId.TabIndex = 19;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(792, 374);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -446,7 +458,7 @@ namespace WinFormsApp6
 
         }
 
-       
+
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             if (txtNombre.Text == "")
@@ -475,7 +487,7 @@ namespace WinFormsApp6
             txtApellido.Clear();
             txtNombre.Focus();
 
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -483,7 +495,7 @@ namespace WinFormsApp6
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "CSV files (*.csv)|*.csv";
-                sfd.Title = "Guardar como CSV";
+                sfd.Title = "Personas";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     try
@@ -587,9 +599,9 @@ namespace WinFormsApp6
         }
 
         private void btnPDF_Click(object sender, EventArgs e)
-        { 
+        {
             ExportarDatosAPDF();
-                
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -611,35 +623,58 @@ namespace WinFormsApp6
         {
 
         }
+        private void GuardarDatosEnCSV()
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(csvFilePath))
+                {
+                    // Escribir los encabezados
+                    sw.WriteLine("Id,Nombres,Apellidos,FechaNcimiento,FechaRegistro");
 
+                    // Escribir los datos
+                    foreach (var persona in personas)
+                    {
+                        sw.WriteLine($"{persona.Id},{persona.Nombres},{persona.Apellidos},{persona.FechaNcimiento:yyyy-MM-dd},{persona.FechaRegistro:yyyy-MM-dd}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
-        //    int id;
-        //    if (int.TryParse(txtId.Text, out id))
-        //    {
-        //        using (var context = new AppDbContext())
-        //        {
-        //            var person = context.Persons.SingleOrDefault(p => p.Id == id);
-        //            if (person != null)
-        //            {
-        //                context.Persons.Remove(person);
-        //                context.SaveChanges();
-        //                MessageBox.Show("Record deleted successfully.");
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Record not found.");
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Please enter a valid ID.");
-        //    }
-        //}
-
+            int id;
+            if (int.TryParse(txtId.Text, out id))
+            {
+                var persona = personas.SingleOrDefault(p => p.Id == id);
+                if (persona != null)
+                {
+                    personas.Remove(persona);
+                    dgvDatos.DataSource = null;
+                    dgvDatos.DataSource = personas;
+                    MessageBox.Show("Persona eliminada correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("Persona no encontrada.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un ID válido.");
+            }
+        }
+        private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvDatos.DataSource = null;
+            dgvDatos.DataSource = personas;
+        }
     }
+
 }
 
 
