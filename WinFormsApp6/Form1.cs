@@ -242,38 +242,45 @@ namespace WinFormsApp6
             // 
             // dgvDatos
             // 
+            this.dgvDatos.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.dgvDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatos.Location = new System.Drawing.Point(358, 22);
+            this.dgvDatos.Cursor = System.Windows.Forms.Cursors.No;
+            this.dgvDatos.GridColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvDatos.Location = new System.Drawing.Point(355, 62);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowTemplate.Height = 25;
-            this.dgvDatos.Size = new System.Drawing.Size(390, 274);
+            this.dgvDatos.Size = new System.Drawing.Size(422, 302);
             this.dgvDatos.TabIndex = 0;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
             // dtpFechaNacimiento
             // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(12, 62);
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(12, 82);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(109, 23);
             this.dtpFechaNacimiento.TabIndex = 1;
             // 
             // dtpFechaRegistro
             // 
-            this.dtpFechaRegistro.Location = new System.Drawing.Point(185, 65);
+            this.dtpFechaRegistro.Cursor = System.Windows.Forms.Cursors.No;
+            this.dtpFechaRegistro.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaRegistro.Location = new System.Drawing.Point(185, 82);
             this.dtpFechaRegistro.Name = "dtpFechaRegistro";
             this.dtpFechaRegistro.Size = new System.Drawing.Size(109, 23);
             this.dtpFechaRegistro.TabIndex = 2;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(12, 21);
+            this.txtNombre.Location = new System.Drawing.Point(12, 36);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(167, 23);
             this.txtNombre.TabIndex = 3;
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(185, 21);
+            this.txtApellido.Location = new System.Drawing.Point(185, 36);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(167, 23);
             this.txtApellido.TabIndex = 4;
@@ -284,7 +291,7 @@ namespace WinFormsApp6
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 91);
+            this.btnAgregar.Location = new System.Drawing.Point(12, 120);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(148, 46);
             this.btnAgregar.TabIndex = 5;
@@ -294,7 +301,7 @@ namespace WinFormsApp6
             // 
             // btnGuardarCSV
             // 
-            this.btnGuardarCSV.Location = new System.Drawing.Point(166, 94);
+            this.btnGuardarCSV.Location = new System.Drawing.Point(176, 120);
             this.btnGuardarCSV.Name = "btnGuardarCSV";
             this.btnGuardarCSV.Size = new System.Drawing.Size(140, 45);
             this.btnGuardarCSV.TabIndex = 6;
@@ -304,7 +311,7 @@ namespace WinFormsApp6
             // 
             // btnMostrarData
             // 
-            this.btnMostrarData.Location = new System.Drawing.Point(14, 145);
+            this.btnMostrarData.Location = new System.Drawing.Point(12, 172);
             this.btnMostrarData.Name = "btnMostrarData";
             this.btnMostrarData.Size = new System.Drawing.Size(232, 22);
             this.btnMostrarData.TabIndex = 7;
@@ -365,9 +372,10 @@ namespace WinFormsApp6
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 3);
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 15);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "Nombre";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -375,43 +383,48 @@ namespace WinFormsApp6
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(195, 3);
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Location = new System.Drawing.Point(185, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 14;
             this.label2.Text = "Apellido";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 47);
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(12, 62);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 15);
+            this.label3.Size = new System.Drawing.Size(122, 17);
             this.label3.TabIndex = 15;
             this.label3.Text = "Fecha De Nacimiento";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(185, 47);
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.Location = new System.Drawing.Point(185, 62);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 15);
+            this.label4.Size = new System.Drawing.Size(103, 17);
             this.label4.TabIndex = 16;
             this.label4.Text = "Fecha De Registro";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(264, 172);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 15);
+            this.label5.Size = new System.Drawing.Size(52, 17);
             this.label5.TabIndex = 17;
             this.label5.Text = "Exportar";
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(12, 295);
+            this.btnEliminar.ForeColor = System.Drawing.Color.Crimson;
+            this.btnEliminar.Location = new System.Drawing.Point(12, 266);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(94, 29);
             this.btnEliminar.TabIndex = 18;
@@ -421,14 +434,15 @@ namespace WinFormsApp6
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(25, 269);
+            this.txtId.Location = new System.Drawing.Point(12, 301);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(63, 23);
+            this.txtId.Size = new System.Drawing.Size(94, 23);
             this.txtId.TabIndex = 19;
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(792, 374);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(825, 374);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label5);
@@ -673,6 +687,8 @@ namespace WinFormsApp6
             dgvDatos.DataSource = null;
             dgvDatos.DataSource = personas;
         }
+
+        
     }
 
 }
