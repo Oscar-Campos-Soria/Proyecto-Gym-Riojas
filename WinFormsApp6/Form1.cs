@@ -47,7 +47,7 @@ namespace WinFormsApp6
 
             InitializeComponent();
             CargarDatosDesdeCSV();
-
+            
 
         }
 
