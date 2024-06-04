@@ -47,18 +47,23 @@ namespace WinFormsApp6
 
             InitializeComponent();
             CargarDatosDesdeCSV();
-            
+           // el constructor Form1 inicializa los componentes del formulario
+           // y luego carga datos desde un archivo CSV.
 
         }
 
 
 
         private void ExportarDatosAExcel()
-        {
+        {  // 1. Configura el contexto de la licencia de ExcelPackage para uso no comercial.
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            // 2. Crea y configura un cuadro de diálogo para guardar archivos.
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
+                // 3. Establece el filtro para que solo muestre archivos con extensión .xlsx.
+
                 sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+
                 sfd.Title = "Guardar como Excel";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -72,7 +77,7 @@ namespace WinFormsApp6
 
                         int rowIndex = 2;
                         foreach (var persona in personas)
-                        {
+                        {// Llena las celdas de la hoja con los datos de cada persona.
                             worksheet.Cells[rowIndex, 1].Value = persona.Id;
                             worksheet.Cells[rowIndex, 2].Value = persona.Nombres;
                             worksheet.Cells[rowIndex, 3].Value = persona.Apellidos;
@@ -501,7 +506,12 @@ namespace WinFormsApp6
             txtApellido.Clear();
             txtNombre.Focus();
 
-
+            // El método btnAgregar_Click_1 maneja el evento de clic del botón "Agregar".
+            // 1. Verifica que los campos de texto del nombre y apellido no estén vacíos,
+            //    mostrando mensajes de error si es necesario y colocando el foco en el campo vacío.
+            // 2. Si ambos campos están llenos, crea una nueva instancia de la clase Persona con los datos ingresados.
+            // 3. Agrega la nueva persona a la lista de personas y actualiza el DataGridView para mostrar la lista actualizada.
+            // 4. Finalmente, limpia los campos de texto y coloca el foco en el campo del nombre.
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -550,7 +560,13 @@ namespace WinFormsApp6
                     {
                         MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
+                }// El método button1_Click maneja el evento de clic del botón "Guardar CSV".
+                 // 1. Crea y configura un cuadro de diálogo para guardar archivos con filtro para archivos CSV.
+                 // 2. Si el usuario selecciona un archivo y presiona "OK", abre el archivo para escritura.
+                 // 3. Escribe los encabezados de las columnas del DataGridView en el archivo CSV.
+                 // 4. Itera sobre las filas del DataGridView y escribe los valores de cada celda en el archivo CSV.
+                 // 5. Muestra un mensaje de éxito si los datos se guardan correctamente.
+                 // 6. Muestra un mensaje de error si ocurre un problema durante la escritura del archivo.
             }
         }
 
