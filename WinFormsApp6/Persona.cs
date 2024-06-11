@@ -37,9 +37,6 @@ namespace WinFormsApp6
             
         }
 
-
-      
-
         public override string ToString()
         {
             return $"{Id}: {Nombres} {Apellidos}";

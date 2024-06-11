@@ -247,7 +247,7 @@ namespace WinFormsApp6
             // 
             // dgvDatos
             // 
-            this.dgvDatos.BackgroundColor = System.Drawing.Color.DarkViolet;
+            this.dgvDatos.BackgroundColor = System.Drawing.Color.SlateBlue;
             this.dgvDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Cursor = System.Windows.Forms.Cursors.No;
